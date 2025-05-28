@@ -1,0 +1,13 @@
+# Database configuration
+datasource:
+  default:
+  username: postgres
+  password: postgres
+  url: jdbc:postgresql://localhost:5432/game_platform
+  driver: org.postgresql.Driver
+
+  # Ebean DDL configuration
+ebean:
+  ddl:
+    generate: false
+    run: false
