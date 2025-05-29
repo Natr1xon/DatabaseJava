@@ -42,6 +42,22 @@ public class MainWindow extends JFrame {
         menuBar = new JMenuBar();
         JMenu file = getJMenu();
         menuBar.add(file);
+
+        JTextField searchFilter = new JTextField( 20);
+        searchFilter.setToolTipText("search name");
+        JButton search = new JButton("Search");
+        search.addActionListener(e -> {
+            if(!searchFilter.getText().isEmpty()){
+                List<Player> players = PLAYER_SERVICE.findPlayersByNickname(searchFilter.getText());
+                tablePlayers.setModel(new PlayerTable(players));
+                attachPlayerContextMenu(tablePlayers);
+                loadStyleTable(tablePlayers, playerPanel);
+                refreshGamesTable(null);
+            }
+        });
+        menuBar.add(searchFilter);
+        menuBar.add(search);
+
         setJMenuBar(menuBar);
     }
 
